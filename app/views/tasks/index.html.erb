@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h2 class="text-center">All Tasks</h2>
+  <ul class="list-group mt-4">
+    <% @tasks.each do |task| %>
+    <li class="list-group-item d-flex justify-content-start align-items-center">
+      <% if task.completed %>
+        <span class="badge badge-primary badge-pill mr-3">x</span>
+      <% else %>
+        <span class="badge badge-success badge-pill mr-3">o</span>
+      <% end %>
+      <%= link_to task.title, task_path(task) %>
+
+      <%= link_to "delete", task_path(task),
+      method: :delete,
+      data: { confirm: "Are you sure?" },
+      class: 'badge badge-danger badge-pill ml-3' %>
+
+    </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "+ Add new task", new_task_path, class: 'btn btn-primary mt-5' %>
+</div>
